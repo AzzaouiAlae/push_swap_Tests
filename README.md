@@ -1,2 +1,2 @@
-# push_swap_Tests
+# push swap Tests
 Push swap end to end tests
