@@ -51,11 +51,9 @@ while true; do
         echo -e "============================"
     done < "$size".txt
     if [[ $checker != "OK" ]]; then
+        echo $(cat "$size".txt) > KO.txt
         break
-    fi
-    if (( $moves >= 5500 )); then
-        break 
-    fi    
+    fi  
     if (( size == 1 )); then
         if (( moves > longer_num1 )); then
             longer_num1=$moves
@@ -134,6 +132,9 @@ while true; do
             echo $longer_num500 > longer_num500.txt
             echo $(cat "$size".txt) >> longer_num500.txt
         fi
+        if (( $moves >= 5500 )); then
+            break 
+        fi  
         size=1
     fi
 done
