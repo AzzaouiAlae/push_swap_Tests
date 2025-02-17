@@ -26,3 +26,4 @@ cp ~/your/push/swap/path .
 ```
 ./random_nums.sh
 ```
+![Screenshot from 2025-02-17 01-02-04](https://github.com/user-attachments/assets/2ef8d7c4-7c99-4101-a09f-c73460f019b9)
