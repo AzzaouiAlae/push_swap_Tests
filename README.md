@@ -17,7 +17,7 @@ cd push_swap_Tests
 chmod +x *
 ```
 
-### Copy your executable file push_swap to push_swap_Tests
+### Copy your executable file push_swap to push_swap_Tests directory
 ```
 cp ~/your/push/swap/path .
 ```
