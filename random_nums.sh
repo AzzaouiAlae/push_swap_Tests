@@ -1,5 +1,13 @@
 #!/bin/bash
+
+loop="1"
+if [[ -n $(./test_errors.sh | grep fail) ]]; then
+    ./test_errors.sh
+    loop="0"
+fi
+
 testNum=0
+longer_num1=0
 longer_num2=0
 longer_num3=0
 longer_num5=0
@@ -12,7 +20,7 @@ longer_num500=0
 size=1
 sing=0
 ran_sign=0
-while true; do
+while [[ "$loop" == "1" ]]; do
     clear
     num=$RANDOM
     ran_sign=$RANDOM
@@ -42,6 +50,15 @@ while true; do
     checker=ok
     while IFS= read -r nums;
     do
+        valgrind ./push_swap $nums 2> valgrind.txt
+        if (( $(cat "valgrind.txt" | grep "no leaks" | wc -l) != 1)); then
+            cat "valgrind.txt"
+            break
+        fi
+        if (( $(cat "valgrind.txt" | grep " 0 errors" | wc -l) != 1)); then
+            cat "valgrind.txt"
+            break
+        fi
         echo -e "\e[32m===> $nums <===\e[0m"
         mv=$(./push_swap $nums )
         moves=$(echo $mv | sed 's/ /\n/g' | wc -l)
@@ -122,7 +139,7 @@ while true; do
             echo $longer_num100 > longer_num100.txt
             echo $(cat "$size".txt) >> longer_num100.txt
         fi
-        if (( $moves > 700 )); then
+        if (( $moves > 620 )); then
             break
         fi
         size=500
@@ -132,7 +149,7 @@ while true; do
             echo $longer_num500 > longer_num500.txt
             echo $(cat "$size".txt) >> longer_num500.txt
         fi
-        if (( $moves >= 5500 )); then
+        if (( $moves >= 4900 )); then
             break 
         fi  
         size=1
