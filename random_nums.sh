@@ -50,12 +50,17 @@ while [[ "$loop" == "1" ]]; do
     checker=ok
     while IFS= read -r nums;
     do
-        valgrind ./push_swap $nums 2> valgrind.txt
+
+        if (( size != 500 )); then
+            valgrind ./push_swap $nums 2> valgrind.txt > a.txt
+        fi
         if (( $(cat "valgrind.txt" | grep "no leaks" | wc -l) != 1)); then
+            loop=0
             cat "valgrind.txt"
             break
         fi
         if (( $(cat "valgrind.txt" | grep " 0 errors" | wc -l) != 1)); then
+            loop=0
             cat "valgrind.txt"
             break
         fi
@@ -69,8 +74,9 @@ while [[ "$loop" == "1" ]]; do
     done < "$size".txt
     if [[ $checker != "OK" ]]; then
         echo $(cat "$size".txt) > KO.txt
+        loop=0
         break
-    fi  
+    fi
     if (( size == 1 )); then
         if (( moves > longer_num1 )); then
             longer_num1=$moves
@@ -139,7 +145,7 @@ while [[ "$loop" == "1" ]]; do
             echo $longer_num100 > longer_num100.txt
             echo $(cat "$size".txt) >> longer_num100.txt
         fi
-        if (( $moves > 620 )); then
+        if (( $moves > 700 )); then
             break
         fi
         size=500
@@ -149,7 +155,7 @@ while [[ "$loop" == "1" ]]; do
             echo $longer_num500 > longer_num500.txt
             echo $(cat "$size".txt) >> longer_num500.txt
         fi
-        if (( $moves >= 4900 )); then
+        if (( $moves >= 5500 )); then
             break 
         fi  
         size=1
