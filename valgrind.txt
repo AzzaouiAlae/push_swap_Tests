@@ -1,29 +1,14 @@
-==308269== Memcheck, a memory error detector
-==308269== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
-==308269== Using Valgrind-3.24.0 and LibVEX; rerun with -h for copyright info
-==308269== Command: ./push_swap 16018 11541
-==308269== 
-==308269== 
-==308269== Process terminating with default action of signal 2 (SIGINT)
-==308269==    at 0x4023CF6: __open_nocancel (open64_nocancel.c:45)
-==308269==    by 0x400B689: _dl_sysdep_read_whole_file (dl-misc.c:39)
-==308269==    by 0x4014CC3: _dl_load_cache_lookup (dl-cache.c:414)
-==308269==    by 0x4008E57: _dl_map_object (dl-load.c:2152)
-==308269==    by 0x40037E4: openaux (dl-deps.c:64)
-==308269==    by 0x4002444: _dl_catch_exception (dl-catch.c:237)
-==308269==    by 0x4003C2D: _dl_map_object_deps (dl-deps.c:248)
-==308269==    by 0x4020AE2: dl_main (rtld.c:1987)
-==308269==    by 0x401CDA2: _dl_sysdep_start (dl-sysdep.c:140)
-==308269==    by 0x401E6F7: _dl_start_final (rtld.c:502)
-==308269==    by 0x401E6F7: _dl_start (rtld.c:587)
-==308269==    by 0x401D7C7: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
-==308269==    by 0x2: ???
-==308269== 
-==308269== HEAP SUMMARY:
-==308269==     in use at exit: 0 bytes in 0 blocks
-==308269==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==308269== 
-==308269== All heap blocks were freed -- no leaks are possible
-==308269== 
-==308269== For lists of detected and suppressed errors, rerun with: -s
-==308269== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==2762206== Memcheck, a memory error detector
+==2762206== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==2762206== Using Valgrind-3.24.0 and LibVEX; rerun with -h for copyright info
+==2762206== Command: ./push_swap 19944 -26133 32469 -24876 26605 7024 32284 12150 -7303 -27104 18180 -19797 21564 32236 5089 -13724 9027 9750 15695 13792 9060 12487 -8062 -7747 17044 1134 837 854 25693 -32336 -14370 32695 31222 16726 6954 10136 -19494 1953 32538 29643 -18769 19863 -5145 -17532 27382 -5172 -4817 5396 -27181 -11265 22015 15184 24048 -6618 28120 -6613 -23912 27554 22527 16962 14441 25289 24124 -22393 1220 -9199 11972 -10499 7261 7381 -19485 4658 9381 13063 32641 6358 7655 -13931 -4520 12075 -20361 6318 27837 29622 -12484 -28497 3572 27298 6938 25672 8184 -22643 12640 3517 12035 7594 14287 6329 -3611 -26482
+==2762206== 
+==2762206== 
+==2762206== HEAP SUMMARY:
+==2762206==     in use at exit: 0 bytes in 0 blocks
+==2762206==   total heap usage: 714 allocs, 714 frees, 348,099 bytes allocated
+==2762206== 
+==2762206== All heap blocks were freed -- no leaks are possible
+==2762206== 
+==2762206== For lists of detected and suppressed errors, rerun with: -s
+==2762206== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

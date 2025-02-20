@@ -3,6 +3,7 @@ clear
 
 testNum=0
 output=""
+exit_status=0
 while IFS= read -r nums;
 do
     ((testNum++))
@@ -31,7 +32,14 @@ do
             echo "push swap show \""$(./push_swap $nums 2>&1 | cat -e)"\""
         else
             if [[ $(./push_swap $nums 2>/dev/null) == "" ]]; then
-                echo Pass
+                ./push_swap $nums 2>/dev/null
+                exit_status=$(echo $?)
+                if (( $exit_status != 255 )); then
+                    echo fail
+                    echo "your exit status is $exit_status, it should be 255"
+                else
+                    echo Pass
+                fi
             else
                 echo fail
                 echo "your push swap not print in stderr"
