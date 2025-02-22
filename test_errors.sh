@@ -9,29 +9,32 @@ do
     ((testNum++))
     echo -n $testNum "try sort "
     echo -e "\e[32m===> $nums <===\e[0m"
-    if (( $(valgrind ./push_swap $nums 2>&1 | grep "no leaks" | wc -l) != 1)); then
+    valgrind ./push_swap $nums 2>&1 2> temp.txt
+    if (( $(cat temp.txt | grep "no leaks" | wc -l) != 1)); then
+        echo fail        
+        valgrind ./push_swap $nums
+        break
+    fi
+    if (( $(cat temp.txt | grep " 0 errors" | wc -l) != 1)); then
         echo fail
         valgrind ./push_swap $nums
         break
     fi
-    if (( $(valgrind ./push_swap $nums 2>&1 | grep " 0 errors" | wc -l) != 1)); then
-        echo fail
-        valgrind ./push_swap $nums
-        break
-    fi
+    ./push_swap $nums 2>&1 2> temp.txt
     if (( testNum == 1 )); then
-        if [[ -n $(./push_swap $nums 2>&1 | cat -e) ]]; then
+        if (( $(cat temp.txt | wc -c) != 0 )); then            
             echo fail
-            echo "push swap show "$( ./push_swap $nums 2>&1 | cat -e)
+            echo "push swap show "$(cat temp.txt)
         else
             echo Pass
         fi
     else
-        if [[ $(./push_swap $nums 2>&1 | cat -e) != "Error$" ]]; then
+        if [[ $(cat -e temp.txt) != "Error$" ]]; then
             echo fail
-            echo "push swap show \""$(./push_swap $nums 2>&1 | cat -e)"\""
+            echo "push swap show \""$(cat -e temp.txt)"\""
         else
-            if [[ $(./push_swap $nums 2>/dev/null) == "" ]]; then
+            ./push_swap $nums 2>/dev/null > temp.txt
+            if (( $(cat temp.txt | wc -c) == 0 )); then
                 ./push_swap $nums 2>/dev/null
                 exit_status=$(echo $?)
                 if (( $exit_status != 255 )); then
